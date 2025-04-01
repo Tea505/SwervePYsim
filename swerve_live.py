@@ -19,7 +19,7 @@ def compute_xy_from_angle(angle):
     x = math.cos(radians)
     y = math.sin(radians)
     return x, y
-
+\
 fig, ax = plt.subplots()
 plt.subplots_adjust(left=0.1, bottom=0.4)
 
