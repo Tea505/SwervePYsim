@@ -110,7 +110,6 @@ def update(frame):
                  robot_y + half_size * math.sin(robot_theta) - half_size * math.cos(robot_theta),
                  robot_y + half_size * math.sin(robot_theta) + half_size * math.cos(robot_theta)]
     
-    # Front marker position
     front_x = robot_x + (half_size + 0.2) * math.cos(robot_theta)
     front_y = robot_y + (half_size + 0.2) * math.sin(robot_theta)
     
