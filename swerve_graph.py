@@ -3,7 +3,7 @@ import math
 import time
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from kinematics import SwerveKinematics
+from kinematics import SwerveKinematics as swervekinematics
 
 """
     This a 2D Graph simulator that allows the user to understand how a swerve drive works.
@@ -74,7 +74,12 @@ def update(frame):
         trail.clear()
     
     # Compute module angles
-    angles = SwerveKinematics.SwerveKinematics.update(vectorX, vectorY, omega)
+    angles = swervekinematics.SwerveKinematics.update(vectorX, vectorY, omega)
+    
+    lf = math.degrees(angles["leftFront"])
+    rf = math.degrees(angles["rightFront"])
+    rr = math.degrees(angles["rightRear"])
+    lr = math.degrees(angles["leftRear"])
     
     # Update robot position
     robot_x += vectorX * MOVE_SPEED
@@ -82,7 +87,7 @@ def update(frame):
     robot_theta += omega * MOVE_SPEED
     
     # Normalize theta to be within -180 to 180
-    robot_theta = SwerveKinematics.SwerveKinematics.normalize_angle(robot_theta)
+    robot_theta = swervekinematics.SwerveKinematics.normalize_angle(robot_theta)
     
     # Define square shape (robot body)
     half_size = 0.5  # Square side length / 2
@@ -111,7 +116,7 @@ def update(frame):
     front_marker.set_data([front_x], [front_y])
     text_display.set_text(f"Current Pos: ({robot_x:.2f}, {robot_y:.2f})\n"
                           f"Current Robot Angle: {robot_theta:.2f} rad / {math.degrees(robot_theta):.2f}°\n"
-                           f"Module Angles (Degrees): {math.degrees(angles[0]):.2f}, {math.degrees(angles[1]):.2f}, {math.degrees(angles[2]):.2f}, {math.degrees(angles[3]):.2f}")
+                          f"Module Angles (Degrees): {lf:.2f}, {rf:.2f}, {rr:.2f}, {lr:.2f}")
     
     
     return robot_shape, corners, trail_dots, text_display, front_marker
