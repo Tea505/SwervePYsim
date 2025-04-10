@@ -75,12 +75,12 @@ def update(frame):
     
     # Compute module angles
     angles = swervekinematics.SwerveKinematics.update(vectorX, vectorY, omega)
-    
-    lf = math.degrees(angles["leftFront"])
+        
     rf = math.degrees(angles["rightFront"])
-    rr = math.degrees(angles["rightRear"])
+    lf = math.degrees(angles["leftFront"])
     lr = math.degrees(angles["leftRear"])
-    
+    rr = math.degrees(angles["rightRear"])
+
     # Update robot position
     robot_x += vectorX * MOVE_SPEED
     robot_y += vectorY * MOVE_SPEED
@@ -116,8 +116,7 @@ def update(frame):
     front_marker.set_data([front_x], [front_y])
     text_display.set_text(f"Current Pos: ({robot_x:.2f}, {robot_y:.2f})\n"
                           f"Current Robot Angle: {robot_theta:.2f} rad / {math.degrees(robot_theta):.2f}°\n"
-                          f"Module Angles (Degrees): {lf:.2f}, {rf:.2f}, {rr:.2f}, {lr:.2f}")
-    
+                          f"Module Angles (Degrees): {rf:.2f}, {lf:.2f}, {lr:.2f}, {rr:.2f}")
     
     return robot_shape, corners, trail_dots, text_display, front_marker
 
