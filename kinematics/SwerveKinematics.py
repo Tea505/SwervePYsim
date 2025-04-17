@@ -9,10 +9,10 @@ class SwerveKinematics():
     def update(vectorX, vectorY, omega):
         R = math.hypot(TRACKWIDTH, WHEELBASE) # Diagnal distance between front n back wheels
     
-        A = vectorX - omega * (TRACKWIDTH / R)
-        B = vectorX + omega * (TRACKWIDTH / R)
-        C = vectorY - omega * (WHEELBASE / R)
-        D = vectorY + omega * (WHEELBASE / R)
+        A = vectorX - omega * (WHEELBASE / R)
+        B = vectorX + omega * (WHEELBASE / R)
+        C = vectorY - omega * (TRACKWIDTH / R)
+        D = vectorY + omega * (TRACKWIDTH / R)
 
         return {
             "rightFront": math.atan2(B, C),  # Right Front
